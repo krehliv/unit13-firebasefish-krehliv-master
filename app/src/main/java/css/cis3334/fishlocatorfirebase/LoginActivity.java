@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     Button buttonLogin, buttonCreateNewUser;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         setupCreateButton();
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() { //initialized mAuthListener
+        /*mAuthListener = new FirebaseAuth.AuthStateListener() { //initialized mAuthListener
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 //track the user when they sign in or out using the firebaseAuth
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(signInIntent);
                 }
             }
-        };
+        };*/
 
 
 
