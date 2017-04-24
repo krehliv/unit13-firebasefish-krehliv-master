@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void signIn(String email, String password) {
+    /*public void signIn(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                            //Toast.makeText(LoginActivity.this, "Authentication failed.",
                             //        Toast.LENGTH_SHORT).show();
                         }
 
@@ -117,15 +117,44 @@ public class LoginActivity extends AppCompatActivity {
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w("CIS3334", "signInWithEmail", task.getException());
-                            //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                            //Toast.makeText(LoginActivity.this, "Authentication failed.",
                             //        Toast.LENGTH_SHORT).show();
                         }
 
                         // ...
                     }
                 });
+    }*/
+
+    private void signIn(String email, String password){
+        //sign in the recurrent user with email and password previously created.
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() { //add to listener
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) { //when failed
+                    Toast.makeText(LoginActivity.this, "SignIn--Authentication failed.",Toast.LENGTH_LONG).show();
+                } else {
+                    //return to MainActivity is login works
+                    finish();
+                }
+            }
+        });
     }
 
+    private void createAccount(String email, String password) {
+        //create account for new users
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {  //update listener.
+                if (!task.isSuccessful()) { //when failed
+                    Toast.makeText(LoginActivity.this, "createAccount--Authentication failed.",Toast.LENGTH_LONG).show();
+                } else {
+                    //return to MainActivity is login works
+                    finish();
+                }
+            }
+        });
+    }
 
 
 }
